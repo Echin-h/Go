@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+{{/*这是显示语句*/}}
+<p>{{.u1.Name}}</p>
+<p>{{.m1.我是}}</p>
+
+{{/*这是一条注释*/}}
+
+{{/*变量定义 要加$*/}}
+{{$v1 := 100}}
+{{$age := .m1.Age}}
+
+{{/*移除空格   {{- 是一组标识 不能有空格 */}}
+<p>{{- .u1.Name -}}</p>
+
+{{/*条件判断*/}}
+{{if $v1}}
+好好学习
+{{else}}
+好好工作
+{{end}}
+
+{{/*eq等于 ne不等于 lt小于 le小于等于 gt大于 ge大于等于 */}}
+
+{{range $idx,$hobby := .hobby}}
+    <p>{{$idx}} - {{$hobby}}</p>
+{{end}}
+
+
+{{/*with  营造一块局部的作用域*/}}
+{{with .m1}}  {{/*把下面的操作变成他的值*/}}
+{{/*这是显示语句*/}}
+<p>{{.u1.Name}}</p>
+<p>{{.m1.我是}}</p>
+{{end}}
+
+</body>
+</html>

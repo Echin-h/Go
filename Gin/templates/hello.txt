@@ -1,0 +1,7 @@
+<h1 style='color:purple'>hello <h1><h2>welcome to my child<h2>
+<button id='b1'>名字</button>
+<script>
+document,getElementById('b1').onclick=function(){
+    document.getElementById('i1')
+}
+</script>
