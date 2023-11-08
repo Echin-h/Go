@@ -7,7 +7,7 @@ import (
 )
 
 // 结构体中 ---> 数据表
-type UserInfo struct {
+type What struct {
 	ID     uint
 	Name   string
 	Gender string
@@ -25,26 +25,27 @@ func main() {
 		fmt.Println("成功连接到数据库！")
 	}
 
-	// 创建表，自动迁移（将结构体和数据表进行对应）
-	err = db.AutoMigrate(&UserInfo{})
 	if err != nil {
 		fmt.Println("创建表出错：", err)
 		return
 	}
 
-	// 清空数据库中的数据
-	err = db.Exec("TRUNCATE TABLE user_infos").Error
-	if err != nil {
-		fmt.Println("清空数据表出错：", err)
-		return
-	}
+	//// 清空数据库中的数据
+	//err = db.Exec("TRUNCATE TABLE user_infos").Error
+	//if err != nil {
+	//	fmt.Println("清空数据表出错：", err)
+	//	return
+	//}
 
 	// 列出一些值
-	users := []UserInfo{
-		{ID: 1, Name: "张三", Gender: "男", Hobby: "篮球"},
-		{ID: 2, Name: "李四", Gender: "女", Hobby: "足球"},
-		{ID: 3, Name: "王五", Gender: "男", Hobby: "游泳"},
+	users := []What{
+		{ID: 4, Name: "zhangsan", Gender: "male", Hobby: "basketball"},
+		{ID: 5, Name: "lisi", Gender: "female", Hobby: "soccer"},
+		{ID: 6, Name: "wangwu", Gender: "male", Hobby: "swimming"},
 	}
+
+	// 创建表，自动迁移（将结构体和数据表进行对应）
+	err = db.AutoMigrate(&What{})
 
 	// 将值存储到数据库
 	for _, user := range users {
@@ -55,5 +56,14 @@ func main() {
 		}
 	}
 
+	// 创建数据行
 	fmt.Println("成功创建记录！")
+	//var u What
+	////查询  表中的第一条代码 保存到u中
+	//db.First(&u)
+	//fmt.Println("u:\v", u)
+	////更新
+	//db.Model(&u).Update("Hobby", "ball")
+	////删除
+	//db.Delete(&u)
 }
